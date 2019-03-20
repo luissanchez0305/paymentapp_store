@@ -127,6 +127,7 @@ export class SignupPage {
 
       let message = this.ndef.textRecord(this.userInfo.userEmail);
       this.nfc.share([message]).then(success => {
+        // TODO buscar si existe el tag en la bd y hacer login con ese id
         console.log(success);
       }).catch(err => {
         console.log(err);
