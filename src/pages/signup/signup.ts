@@ -32,7 +32,6 @@ export class SignupPage {
   public nameValue : string;
   public emailValue : string;
   public isUserLoggedIn : boolean = false;
-  public showLinkTagButton : boolean;
   public userInfo: any;
 
   constructor(public navCtrl: NavController, private storage: Storage, public navParams: NavParams, private network: Network, private zone: NgZone,
@@ -63,8 +62,6 @@ export class SignupPage {
       if(value != null){
         this.isUserLoggedIn = true;
         this.userInfo = value;
-        if(value.userType == 2)
-          this.showLinkTagButton = true;
         let loading = this.loadingCtrl.create({
             content: 'Espere un momento...'
         });
@@ -149,7 +146,7 @@ export class SignupPage {
       formData.append('userId', this.userInfo.userId );
       formData.append('name', this.register.value.name);
       formData.append('email', this.register.value.email);
-      formData.append('user_type_id', '2');
+      formData.append('user_type_id', '1');
       formData.append('uid','1234567890');
       if(value != null){
         formData.append('type', 'save');
@@ -168,8 +165,7 @@ export class SignupPage {
           let userArray = {
             userId: this.responseData.id,
             userName: this.responseData.user.name,
-            userEmail: this.responseData.user.email,
-            userType: this.responseData.user.user_type_id
+            userEmail: this.responseData.user.email
           };
 
           this.storage.set(Constants.userLoggedInKey, userArray);

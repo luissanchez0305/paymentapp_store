@@ -16,17 +16,6 @@
 
 <ion-content padding class="masters">
 
-    <ion-grid>
-      <ion-row>
-        <ion-col ><button ion-button block class="facebookButton" (click)="fbLogin();">Login With Facebook</button></ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col><button ion-button block class="instagramButton">Login With Instagram</button></ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <div class="hrLine"><span>Or</span></div>
-
     <form [formGroup]="login" (ngSubmit)="attemptUserLogin()">
       <ion-list no-lines padding-top>
         <ion-item>

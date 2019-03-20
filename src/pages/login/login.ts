@@ -59,17 +59,6 @@ export class LoginPage {
   signupPage(){ this.navCtrl.setRoot(SignupPage); }
   forgotPasswordPage(){ this.navCtrl.setRoot(ForgotPage); }
 
-  fbLogin(){
-    /*this.fb.login(['public_profile', 'email'])
-      .then(res => {
-        this.fb.api('me/?fields=id,email,first_name', ['public_profile', 'email']).then(apiRes => {
-          this.userInfo = apiRes;
-          this.isDeviceOnline = true;
-          alert('Logged into Facebook!')
-        }).catch(e => alert('Error api into Facebook'));
-    }).catch(e => alert('Error logging into Facebook'  + e));*/
-  }
-
   attemptUserLogin(){
     let loading = this.loadingCtrl.create({
       content: 'Espere un momento...'
@@ -86,14 +75,12 @@ export class LoginPage {
           let userArray = {
             userId: this.responseData.user.id,
             userEmail: this.responseData.user.email,
-            userName: this.responseData.user.name,
-            userType: this.responseData.user.user_type_id
+            userName: this.responseData.user.name
           };
 
           this.storage.set(Constants.userLoggedInKey, userArray);
           this.showLoginFailText = false;
           this.events.publish('setBalance', '$' + parseFloat(this.responseData.user.amount).toFixed(2));
-          this.events.publish('setMenuItems', this.responseData.user.user_type_id == 2 ? 'user' : 'store');
           this.navCtrl.setRoot(HomePage);
         }
         else {
